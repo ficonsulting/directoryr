@@ -1,0 +1,14 @@
+Package: directoryr
+Type: Package
+Title: Build Sub-Directories in Shiny Server to Host Apps in Packages
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Jon", "Hill", email = "jon.mark.hill@gmail.com", role = c("aut", "cre", "cph")))
+Maintainer: Jonathan Hill <jon.mark.hill@gmail.com>
+Description: This is a continuous integration utility package for Shiny Server.
+    If a package is installed on the server, this package can be used to maintain
+    Shiny Server sub-directories with a yaml file and fully automate shiny app
+    deployments.
+License: MIT
+Encoding: UTF-8
+LazyData: true
