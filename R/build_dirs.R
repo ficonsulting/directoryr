@@ -20,6 +20,14 @@ build_dirs <- function(yaml_loc = "/srv/shiny-server/app.yml") {
 
     create_app_file(pkg, sub_dir, apps)
   }
+  clean_up(root_dir, pkgs)
+}
+
+#' @keywords internal
+create_sub_dir <- function(root, name) {
+  sub_dir <- file.path(root, name)
+  if (!dir.exists(sub_dir)) dir.create(sub_dir)
+  invisible(sub_dir)
 }
 
 #' @keywords internal
@@ -34,8 +42,13 @@ create_app_file <- function(pkg, sub_dir, apps) {
 }
 
 #' @keywords internal
-create_sub_dir <- function(root, name) {
-  sub_dir <- file.path(root, name)
-  if (!dir.exists(sub_dir)) dir.create(sub_dir)
-  invisible(sub_dir)
+clean_up <- function(root_dir, pkgs) {
+  dir_list <- list.dirs(root_dir, full.names = F, recursive = F)
+
+  for (pkg in pkgs) {
+    if (!pkg %in% dir_list) warning(sprintf("%s's apps did not get deployed", pkg))
+  }
+  for (sub_dir in dir_list) {
+    if (!sub_dir %in% pkgs) unlink(file.path(root_dir, sub_dir), recursive = TRUE, force = TRUE)
+  }
 }
