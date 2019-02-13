@@ -15,4 +15,6 @@ LazyData: true
 Imports:
     yaml
 Suggests: 
-    testthat
+    testthat,
+    covr
+RoxygenNote: 6.1.1

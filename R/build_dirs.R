@@ -1,4 +1,15 @@
-#' Build sub-directories of Shiny Server
+#' Build sub-directories for Shiny Server
+#'
+#' This function builds sub-directories for apps in R packages and creates an
+#' \code{app.R} file to launch each one on Shiny Server. This makes it easier to
+#' install shiny apps via independent R packages and host them on Shiny Server.
+#'
+#' A CI tool (e.g. Jenkins, Travis, or AppVeyor) can install the R package and
+#' app on a server where Shiny Server is running. Then use \code{build_dirs()}
+#' to update Shiny Server based on app.yml as part of the release step in a
+#' CI/CD pipeline.
+#'
+#' @param yaml_loc path to app.yml file
 #'
 #' @export
 build_dirs <- function(yaml_loc = "/srv/shiny-server/app.yml") {
