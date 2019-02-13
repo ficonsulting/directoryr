@@ -1,0 +1,9 @@
+testpkg:
+ - App1
+ - App2
+sabbatical:
+ - app
+extrapkg:
+  shiny-apps:
+   - App1
+   - App2
