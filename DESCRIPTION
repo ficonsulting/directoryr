@@ -9,7 +9,7 @@ Description: This is a continuous integration utility package for Shiny Server.
     If a package is installed on the server, this package can be used to maintain
     Shiny Server sub-directories with a yaml file and fully automate shiny app
     deployments.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
