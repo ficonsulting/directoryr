@@ -20,7 +20,7 @@ require(directoryr)
 build_dirs()
 ```
 
-`build_dirs()` creates directories based on app.yml and at the lowest level places a simple app.R file for each app:
+`build_dirs()` creates directories based on app.yml and creates an app.R file for each app:
 
 ## app.R
 ```

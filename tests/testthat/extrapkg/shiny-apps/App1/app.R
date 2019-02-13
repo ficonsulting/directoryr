@@ -1,1 +1,1 @@
-shiny::shinyAppDir(system.file(package = "extrapkg", "App1"))
+shiny::shinyAppDir(system.file(package = "extrapkg", "shiny-apps/App1"))

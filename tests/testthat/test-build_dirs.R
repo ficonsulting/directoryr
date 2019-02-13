@@ -7,3 +7,7 @@ test_that("More than two sub-directories should is not supported", {
 test_that("Duplicate packages are not allowed", {
   expect_error(build_dirs("app-dup.yml"))
 })
+
+test_that("Non-standard location warning", {
+  expect_warning(build_dirs("app.yml"))
+})

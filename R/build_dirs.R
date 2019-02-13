@@ -4,6 +4,8 @@
 build_dirs <- function(yaml_loc = "/srv/shiny-server/app.yml") {
 
   root_dir <- dirname(yaml_loc)
+  if (root_dir != "/srv/shiny-server") warning(paste(root_dir, "is not in the standard location for hosted shiny apps."))
+
   app_list <- yaml::read_yaml(yaml_loc)
   pkgs     <- names(app_list)
 
@@ -34,8 +36,15 @@ create_sub_dir <- function(root, name) {
 create_app_file <- function(pkg, sub_dir, apps) {
   for (app in apps) {
     app_dir <- create_sub_dir(sub_dir, app)
+
+    if (basename(sub_dir) == pkg) {
+      app_loc <- app
+    } else  {
+      app_loc <- file.path(basename(sub_dir), app)
+    }
+
     writeLines(
-      text = sprintf('shiny::shinyAppDir(system.file(package = "%s", "%s"))', pkg, app),
+      text = sprintf('shiny::shinyAppDir(system.file(package = "%s", "%s"))', pkg, app_loc),
       con  = file.path(app_dir, "app.R")
     )
   }
