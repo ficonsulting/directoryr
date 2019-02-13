@@ -19,10 +19,15 @@ extrapkg:
 ```
 
 ## Run `build_dirs()`
+In R:
 ```
-require(directoryr)
-build_dirs()
+directoryr::build_dirs()
 ```
+In Travis CI:
+```
+- Rscript -e 'directoryr::build_dirs()'
+```
+
 
 `build_dirs()` creates directories based on app.yml and creates an app.R file for each app:
 
