@@ -6,16 +6,16 @@
 #'
 #' A CI tool (e.g. Jenkins, Travis, or AppVeyor) can install the R package and
 #' app on a server where Shiny Server is running. Then use \code{build_dirs()}
-#' to update Shiny Server based on app.yml as part of the release step in a
+#' to update Shiny Server based on app.yaml as part of the release step in a
 #' CI/CD pipeline.
 #'
-#' @param yaml_loc path to app.yml file
+#' @param yaml_loc path to app.yaml file
 #'
 #' @export
-build_dirs <- function(yaml_loc = "/srv/shiny-server/app.yml") {
+build_dirs <- function(yaml_loc = "/srv/shiny-server/app.yaml") {
 
   root_dir <- dirname(yaml_loc)
-  if (root_dir != "/srv/shiny-server") warning(paste(root_dir, "is not in the standard location for hosted shiny apps."))
+  if (root_dir != "/srv/shiny-server") warning(paste(root_dir, "is not the standard location for hosted shiny apps."))
 
   app_list <- yaml::read_yaml(yaml_loc)
   pkgs     <- names(app_list)
@@ -66,7 +66,7 @@ clean_up <- function(root_dir, pkgs) {
   dir_list <- list.dirs(root_dir, full.names = F, recursive = F)
 
   for (pkg in pkgs) {
-    if (!pkg %in% dir_list) warning(sprintf("%s's apps did not get deployed", pkg))
+    if (!pkg %in% dir_list) warning(sprintf("%s's apps did not get deployed", pkg)) #nocov
   }
   for (sub_dir in dir_list) {
     if (!sub_dir %in% pkgs) unlink(file.path(root_dir, sub_dir), recursive = TRUE, force = TRUE)
